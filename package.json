@@ -1,0 +1,20 @@
+{
+  "name": "@proxtx/websocket",
+  "version": "1.0.0",
+  "description": "simple websocket",
+  "main": "websocket.js",
+  "type": "module",
+  "scripts": {
+    "test": "nodemon test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Proxtx/websocket.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Proxtx/websocket/issues"
+  },
+  "homepage": "https://github.com/Proxtx/websocket#readme"
+}
