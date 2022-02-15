@@ -30,7 +30,7 @@ class Socket {
   };
 
   send = (message) => {
-    this.socket.send(constructReply(message));
+    this.socket.write(constructReply(message));
   };
 }
 
@@ -68,7 +68,7 @@ export class WebSocket {
 }
 
 const constructReply = (data) => {
-  const json = JSON.stringify(data);
+  const json = typeof data == "string" ? data : JSON.stringify(data);
   const jsonByteLength = Buffer.byteLength(json);
   const lengthByteCount = jsonByteLength < 126 ? 0 : 2;
   const payloadLength = lengthByteCount === 0 ? jsonByteLength : 126;
