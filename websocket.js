@@ -4,6 +4,7 @@ class Socket {
   socket;
   message = [];
   disconnect = [];
+  error = [];
 
   constructor(socket) {
     this.socket = socket;
@@ -13,10 +14,17 @@ class Socket {
         for (let callback of this.message) {
           callback(message);
         }
-      } else if (message === null) {
-        for (let callback of this.disconnect) {
-          callback();
-        }
+      }
+    });
+
+    socket.on("error", (e) => {
+      for (let callback of this.error) {
+        callback();
+      }
+    });
+    socket.on("end", () => {
+      for (let callback of this.disconnect) {
+        callback();
       }
     });
   }
@@ -27,6 +35,10 @@ class Socket {
 
   onDisconnect = (callback) => {
     this.disconnect.push(callback);
+  };
+
+  onError = (callback) => {
+    this.error.push(callback);
   };
 
   send = (message) => {
