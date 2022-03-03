@@ -14,16 +14,15 @@ class Socket {
         for (let callback of this.message) {
           callback(message);
         }
+      } else if (message === null) {
+        for (let callback of this.disconnect) {
+          callback();
+        }
       }
     });
 
     socket.on("error", (e) => {
       for (let callback of this.error) {
-        callback();
-      }
-    });
-    socket.on("end", () => {
-      for (let callback of this.disconnect) {
         callback();
       }
     });
