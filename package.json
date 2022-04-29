@@ -1,6 +1,6 @@
 {
   "name": "@proxtx/websocket",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "simple websocket",
   "main": "websocket.js",
   "type": "module",
