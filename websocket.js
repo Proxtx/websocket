@@ -9,15 +9,19 @@ class Socket {
   constructor(socket) {
     this.socket = socket;
     socket.on("data", (buffer) => {
-      const message = parseMessage(buffer);
-      if (message) {
-        for (let callback of this.message) {
-          callback(message);
+      try {
+        const message = parseMessage(buffer);
+        if (message) {
+          for (let callback of this.message) {
+            callback(message);
+          }
+        } else if (message === null) {
+          for (let callback of this.disconnect) {
+            callback();
+          }
         }
-      } else if (message === null) {
-        for (let callback of this.disconnect) {
-          callback();
-        }
+      } catch (e) {
+        console.log(e);
       }
     });
 
